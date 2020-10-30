@@ -23,6 +23,7 @@
  ****************************************************************************/
 
 #include "HelloWorldScene.h"
+#include <string>
 
 USING_NS_CC;
 
@@ -51,6 +52,13 @@ bool HelloWorld::init()
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
+	auto label1 = Label::create();
+	label1->setString(std::to_string(visibleSize.height) + " " + std::to_string(visibleSize.width));
+	label1->setPosition(Vec2(origin.x + visibleSize.width / 2,
+		origin.y + visibleSize.height - label1->getContentSize().height + 10));
+	this->addChild(label1);
+	
+	
     /////////////////////////////
     // 2. add a menu item with "X" image, which is clicked to quit the program
     //    you may modify it.
@@ -59,7 +67,8 @@ bool HelloWorld::init()
     auto closeItem = MenuItemImage::create(
                                            "CloseNormal.png",
                                            "CloseSelected.png",
-                                           CC_CALLBACK_1(HelloWorld::menuCloseCallback, this));
+											CC_CALLBACK_1(HelloWorld::menuCloseCallback, this)
+                                           );
 
     if (closeItem == nullptr ||
         closeItem->getContentSize().width <= 0 ||
