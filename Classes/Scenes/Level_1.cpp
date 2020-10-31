@@ -43,12 +43,17 @@ bool Level_1::init()
     }
     else
     {
-        // position the sprite on the center of the screen
         sprite->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
-        // add the sprite as a child to this layer
         this->addChild(sprite, 0);
     }
 
+	auto enemy = Sprite::create("Enemies/Goblin/Idle/0.png");
+	enemy->setScale(0.1);
+	enemy->setPosition(1000, 525);
+	enemy->setFlippedX(true);
+	this->addChild(enemy);
+	auto seq = Sequence::create(MoveBy::create(2, Vec2(-290, 0)), MoveBy::create(2, Vec2(0, -30)), MoveBy::create(2, Vec2(-90, 0)), nullptr);
+	enemy->runAction(seq);
     this->scheduleUpdate();
     return true;
 }
