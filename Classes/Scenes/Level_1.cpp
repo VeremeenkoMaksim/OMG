@@ -49,7 +49,6 @@ bool Level_1::init()
  //       sprite->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
  //       this->addChild(sprite, 0);
  //   }
-
 	//auto enemy = Sprite::create("Enemies/Goblin/Idle/0.png");
 	//enemy->setScale(0.1);
 	//enemy->setPosition(1000, 525);
@@ -58,9 +57,9 @@ bool Level_1::init()
 	//auto seq = Sequence::create(MoveBy::create(2, Vec2(-290, 0)), MoveBy::create(2, Vec2(0, -30)), MoveBy::create(2, Vec2(-90, 0)), nullptr);
 	//enemy->runAction(seq);
 
-	auto *field = new Field();
-	this->addChild(field->createField(13,10), 10);
 
+	auto *field = new Field();
+	this->addChild(field->CreateField(13,10), -1);
     this->scheduleUpdate();
     return true;
 }

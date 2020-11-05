@@ -1,6 +1,5 @@
 #include "cocos2d.h"
 #include "Tile.h"
-#include "cocos2d.h"
 
 class Field : public cocos2d::Node
 {
@@ -8,8 +7,8 @@ private:
 	TTile *** tiles;
 	int width;
 	int height;
-	std::string** getDataField();
+	std::string** GetDataField();
 public:
-	Field* createField(int width, int height);
+	Field* CreateField(int width, int height);
 
 };
