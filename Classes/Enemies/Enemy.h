@@ -1,6 +1,6 @@
 #include "cocos2d.h"
 
-class Goblin
+class Enemy
 {
 public:
 	virtual bool init();

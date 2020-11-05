@@ -1,6 +1,6 @@
-#include "Goblin.h"
+#include "Enemy.h"
 
-bool Goblin::init() {
+bool Enemy::init() {
 
 	return true;
 }

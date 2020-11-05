@@ -3,6 +3,9 @@
 
 class Level_1 : public cocos2d::Scene
 {
+private:
+	void imgui();
+
 public:
     static cocos2d::Scene* createScene();
 

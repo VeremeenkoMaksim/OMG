@@ -57,3 +57,5 @@ proj.win32/
 win32-build/
 bin/
 adb
+
+cocos2d-x-imgui/
