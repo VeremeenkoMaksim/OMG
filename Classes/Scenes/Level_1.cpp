@@ -1,5 +1,6 @@
 #include "Level_1.h"
 #include "Field.h"
+#include "enemies/Goblin.h"
 #include "../Classes/cocos2d-x-imgui/CCImGuiLayer.h"
 #include "../Classes/cocos2d-x-imgui/CCIMGUI.h"
 #include "../Classes/cocos2d-x-imgui/imgui/imgui.h"
@@ -57,9 +58,9 @@ bool Level_1::init()
 	//auto seq = Sequence::create(MoveBy::create(2, Vec2(-290, 0)), MoveBy::create(2, Vec2(0, -30)), MoveBy::create(2, Vec2(-90, 0)), nullptr);
 	//enemy->runAction(seq);
 
-
-	auto *field = new Field();
-	this->addChild(field->CreateField(13,10), -1);
+	this->addChild(Field::GetInstance()->CreateField(13,10), -1);
+	Enemy * goblin = new Goblin();
+	this->addChild(goblin, 10);
     this->scheduleUpdate();
     return true;
 }

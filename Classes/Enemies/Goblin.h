@@ -1,9 +1,9 @@
-#include "cocos2d.h"
-
-class Goblin
+#include "Enemy.h"
+class Goblin : public Enemy
 {
-public:
-	virtual bool init();
 
-	void update(float dt);
+public:
+	Goblin();
+	virtual bool init() override;
+
 };

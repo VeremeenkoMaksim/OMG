@@ -1,5 +1,14 @@
 #include "Field.h"
 #include <fstream>
+
+Field* Field::singleton = 0;
+Field* Field::GetInstance() {
+	if (!singleton) {
+		singleton = new Field();
+	}
+	return singleton;
+}
+
 Field* Field::CreateField(int width, int height) {
 	tiles = new TTile**[height];
 	std::string ** typesTile = GetDataField();
@@ -19,6 +28,7 @@ Field* Field::CreateField(int width, int height) {
 			this->addChild(tiles[i][j], 0);
 		}
 	}
+	SetTheWay();
 	return this;
 }
 
@@ -35,5 +45,28 @@ std::string ** Field::GetDataField() {
 			fin >> values[i][j];
 		}
 	}
+	fin.close();
 	return values;
 }
+
+std::vector<TTile*> Field::GetTheWay() {
+	return way;
+}
+void Field::SetTheWay() {
+	std::ifstream fin("../Resources/backgrounds/field/ways/level_1_way.txt");
+	while (!fin.eof()) {
+		auto i = 0;
+		auto j = 0;
+		fin >> i;
+		if (i == -1) {
+			AutoSetTheWay();
+		}
+		fin >> j;
+		way.push_back(tiles[i][j]);
+	}
+}
+
+void Field::AutoSetTheWay() {
+	
+}
+
