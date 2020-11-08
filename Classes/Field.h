@@ -10,8 +10,11 @@ private:
 	std::string** GetDataField();
 	static Field * singleton;
 	std::vector<TTile*> way = {};
+	std::vector<TTile*> fullWay = {};
 	void SetTheWay();
-	void AutoSetTheWay();
+	void AutoSetTheWay(cocos2d::Vec2 startPosition);
+	std::vector<TTile*> sortFullWay(std::vector<TTile*> fullWay, cocos2d::Vec2 startPosition);
+	bool TilesIsNeighbors(TTile * tile1, TTile * tile2);
 public:
 	TTile *** tiles;
 	Field * CreateField(int width, int height);

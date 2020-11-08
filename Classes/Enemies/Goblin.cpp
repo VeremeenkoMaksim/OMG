@@ -11,7 +11,7 @@ bool Goblin::init() {
 	sprite->setScale(0.1);
 	this->addChild(sprite);
 	health = 100;
-	speed = 140;
+	speed = 300;
 	damage = 5;
 	return true;
 }
