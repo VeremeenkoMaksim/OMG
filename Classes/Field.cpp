@@ -4,7 +4,11 @@
 Field* Field::singleton = 0;
 Field::Field() {
 	dataField = JsonInstance::GetInstance()->GetData("field");
-	dataResolution = JsonInstance::GetInstance()->GetData("resolutions")["1024"];
+	int resolutionX = cocos2d::Director::getInstance()->getOpenGLView()->getFrameSize().width;
+	dataResolution = JsonInstance::GetInstance()->GetData("resolutions")[std::to_string(resolutionX)];
+	if (dataResolution.empty) {
+		dataResolution = JsonInstance::GetInstance()->GetData("resolutions")["1024"];
+	}
 }
 Field* Field::GetInstance() {
 	if (!singleton) {
