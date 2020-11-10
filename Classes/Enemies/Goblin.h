@@ -1,6 +1,8 @@
 #include "Enemy.h"
+
 class Goblin : public Enemy
 {
+private: 
 
 public:
 	Goblin();

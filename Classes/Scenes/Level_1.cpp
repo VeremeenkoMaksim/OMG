@@ -1,9 +1,8 @@
+#pragma once
 #include "Level_1.h"
 #include "Field.h"
 #include "enemies/Goblin.h"
-#include "../Classes/cocos2d-x-imgui/CCImGuiLayer.h"
-#include "../Classes/cocos2d-x-imgui/CCIMGUI.h"
-#include "../Classes/cocos2d-x-imgui/imgui/imgui.h"
+
 USING_NS_CC;
 
 Scene* Level_1::createScene()
@@ -38,49 +37,4 @@ bool Level_1::init()
 
 void Level_1::update(float dt) {
 	//imgui();
-}
-
-void Level_1::imgui() {
-	std::string layerName = "ImGUILayer";
-	auto order = INT_MAX;
-	auto layer = ImGuiLayer::create();
-	//layer->setPosition(500, 350);
-	this->addChild(layer, order, layerName);
-
-
-	auto& io = ImGui::GetIO();
-	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
-	io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
-
-	auto sp = Sprite::create("HelloWorld.png");
-	layer->addChild(sp);
-	// add ui callbacks
-	CCIMGUI::getInstance()->addCallback([=]() {
-		ImGui::Text("Hello, world!");
-		// create button with Sprite, auto pushID / popID with texture id
-		CCIMGUI::getInstance()->imageButton(sp, ImVec2(0, 0));
-		}, "hello");
-	// remove ui callbacks to stop rendering
-	CCIMGUI::getInstance()->removeCallback("hello");
-	// add chinese font
-	//io.Fonts->AddFontDefault();
-	io.Fonts->AddFontFromFileTTF("D:/CocosWorkspaces/TowerDefense/Classes/cocos2d-x-imgui/imgui/misc/fonts/Roboto-Medium.ttf", 16.0f, 0, io.Fonts->GetGlyphRangesDefault());
-
-	unsigned char* pixels;
-	int width, height;
-	io.Fonts->GetTexDataAsAlpha8(&pixels, &width, &height);
-
-	io.DisplaySize.x = 100;
-	io.DisplaySize.y = 100;
-
-
-	ImGui::NewFrame();
-	ImGui::Begin("Window");
-	ImGui::End();
-	ImGui::EndFrame();
-	if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
-	{
-		ImGui::UpdatePlatformWindows();
-		ImGui::RenderPlatformWindowsDefault();
-	}
 }

@@ -1,0 +1,16 @@
+{
+	"Tiles": {
+		"WayTile": "1",
+		"0": "field/tiles/0.jpg",
+		"1": "field/tiles/1.jpg"
+	},
+
+	"Levels" : {
+		"Level_1" : "../Resources/field/level_1.txt"
+	},
+
+	"Ways" : {
+		"Level_1" : "../Resources/field/ways/level_1_way.txt"
+	}
+
+}

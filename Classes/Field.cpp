@@ -2,6 +2,10 @@
 #include <fstream>
 
 Field* Field::singleton = 0;
+Field::Field() {
+	dataField = JsonInstance::GetInstance()->GetData("field");
+	dataResolution = JsonInstance::GetInstance()->GetData("resolutions")["1024"];
+}
 Field* Field::GetInstance() {
 	if (!singleton) {
 		singleton = new Field();
@@ -15,16 +19,16 @@ Field* Field::CreateField(int width, int height) {
 	for (auto i = 0; i < height; i++) {
 		tiles[i] = new TTile*[width];
 	}
-	int resolutionX = 1024;
-	int resolutionY = 768;
-	int tileSize = 76;
-	float offsetX = (resolutionX - width * tileSize) / 2;
-	float offsetY = (resolutionY - height * tileSize) / 2;
+	int resolutionX = cocos2d::Director::getInstance()->getOpenGLView()->getFrameSize().width;
+	int resolutionY = cocos2d::Director::getInstance()->getOpenGLView()->getFrameSize().height;
+	cocos2d::Size tileSize = cocos2d::Size(dataResolution["Tile"]["Width"], dataResolution["Tile"]["Height"]);
+	float offsetX = (resolutionX - width * tileSize.width) / 2;
+	float offsetY = (resolutionY - height * tileSize.height) / 2;
 	for (auto i = 0; i < height; i++) {
 		for (auto j = 0; j < width; j++) {
 			tiles[i][j] = new TTile(cocos2d::Vec2(j,i));
-			tiles[i][j]->addChild(cocos2d::Sprite::create("backgrounds/field/tiles/" + typesTile[i][j]+".jpg"), 10);
-			tiles[i][j]->setPosition(tileSize/2 + offsetX + tileSize * j, tileSize/2 + offsetY + tileSize * i);
+			tiles[i][j]->addChild(cocos2d::Sprite::create(dataField["Tiles"][typesTile[i][j]]), 10);
+			tiles[i][j]->setPosition(tileSize.width/2 + offsetX + tileSize.width * j, tileSize.height/2 + offsetY + tileSize.height * i);
 			if (typesTile[i][j] == "1") {
 				fullWay.push_back(tiles[i][j]);
 			}
@@ -36,7 +40,7 @@ Field* Field::CreateField(int width, int height) {
 }
 
 std::string ** Field::GetDataField() {
-	std::ifstream fin("../Resources/backgrounds/field/level_1.txt");
+	std::ifstream fin((std::string) dataField["Levels"]["Level_1"]);
 	fin >> width;
 	fin >> height;
 	std::string ** values = new std::string*[height];
@@ -56,7 +60,7 @@ std::vector<TTile*> Field::GetTheWay() {
 	return way;
 }
 void Field::SetTheWay() {
-	std::ifstream fin("../Resources/backgrounds/field/ways/level_1_way.txt");
+	std::ifstream fin((std::string) dataField["Ways"]["Level_1"]);
 	while (!fin.eof()) {
 		auto i = 0;
 		auto j = 0;

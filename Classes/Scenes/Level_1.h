@@ -1,4 +1,3 @@
-
 #include "cocos2d.h"
 
 class Level_1 : public cocos2d::Scene

@@ -1,17 +1,17 @@
 #include "Goblin.h"
-#include "Field.h"
-#include <vector>
 
 Goblin::Goblin() {
+	data = JsonInstance::GetInstance()->GetData("enemies")["Goblin"];
 	init();
 }
 bool Goblin::init() {
 	Enemy::init();
-	sprite = cocos2d::Sprite::create("enemies/goblin/idle/0.png");
-	sprite->setScale(0.1);
+	std::string s = data["Image"];
+	sprite = cocos2d::Sprite::create(data["Image"]);
 	this->addChild(sprite);
-	health = 100;
-	speed = 300;
-	damage = 5;
+	this->setScale(data["Scale"]);
+	health = data["Stats"]["Health"];
+	speed = data["Stats"]["Speed"];
+	damage = data["Stats"]["Damage"];
 	return true;
 }

@@ -1,0 +1,8 @@
+{
+	"Goblin" : {
+		"Stats" : {"Health" : 10, "Speed" : 300, "Damage" : 5},
+		"Image" : "D:/CocosWorkspaces/TowerDefense/Resources/enemies/Goblin/Idle/0.png",
+		"Scale" : 0.1
+
+	}
+}
