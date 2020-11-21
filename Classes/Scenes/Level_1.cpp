@@ -29,12 +29,15 @@ bool Level_1::init()
     this->addChild(resolution);
 
 	this->addChild(Field::GetInstance()->CreateField(13,10), -1);
+	Node *enemies = new Node();
+	this->addChild(enemies);
 	Enemy * goblin = new Goblin();
-	this->addChild(goblin, 10);
+	enemies->addChild(goblin, 10);
     this->scheduleUpdate();
     return true;
 }
 
 void Level_1::update(float dt) {
-	//imgui();
+
+
 }

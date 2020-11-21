@@ -6,7 +6,7 @@ Field::Field() {
 	dataField = JsonInstance::GetInstance()->GetData("field");
 	int resolutionX = cocos2d::Director::getInstance()->getOpenGLView()->getFrameSize().width;
 	dataResolution = JsonInstance::GetInstance()->GetData("resolutions")[std::to_string(resolutionX)];
-	if (dataResolution.empty) {
+	if (dataResolution.empty()) {
 		dataResolution = JsonInstance::GetInstance()->GetData("resolutions")["1024"];
 	}
 }
@@ -128,3 +128,5 @@ bool Field::TilesIsNeighbors(TTile * tile1, TTile * tile2) {
 	return abs(tile1->GetTilePos().x - tile2->GetTilePos().x) == 1 && abs(tile1->GetTilePos().y - tile2->GetTilePos().y) == 0 ||
 		abs(tile1->GetTilePos().x - tile2->GetTilePos().x) == 0 && abs(tile1->GetTilePos().y - tile2->GetTilePos().y) == 1;
 }
+
+void Field::

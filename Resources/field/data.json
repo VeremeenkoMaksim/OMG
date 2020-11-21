@@ -11,6 +11,8 @@
 
 	"Ways" : {
 		"Level_1" : "../Resources/field/ways/level_1_way.txt"
+	},
+	"Content" : {
+		"Level_1" : "../Resources/field/content/level_1_way.txt"
 	}
-
 }
