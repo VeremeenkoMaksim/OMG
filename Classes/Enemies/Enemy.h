@@ -1,4 +1,6 @@
+
 #pragma once
+
 #include "cocos2d.h"
 #include "../Classes/Json/JsonInstance.h"
 

@@ -20,6 +20,7 @@ JsonInstance::JsonInstance() {
 	fin.open("../Resources/towers/data.json");
 	towersData = nlohmann::json::parse(fin);
 	fin.close();
+
 }
 
 JsonInstance * JsonInstance::GetInstance() {
@@ -39,9 +40,11 @@ nlohmann::json JsonInstance::GetData(std::string nameOfData) {
 	else if (nameOfData._Equal("resolutions")) {
 		return resolutionsData;
 	}
+
 	else if (nameOfData._Equal("towers")) {
 		return towersData;
 	}
+
 	else return nullptr;
 }
 

@@ -1,6 +1,6 @@
 #include "cocos2d.h"
+class TTile : public cocos2d::Node {
 
-class TTile:public cocos2d::Node {
 private:
 	cocos2d::Vec2 tilePos;
 public: 
