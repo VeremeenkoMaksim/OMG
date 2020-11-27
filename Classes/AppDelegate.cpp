@@ -2,7 +2,6 @@
 #include "HelloWorldScene.h"
 #include "Scenes/Level_1.h"
 
-#include "../Classes/cocos2d-x-imgui/CCImGuiLayer.h"
 // #define USE_AUDIO_ENGINE 1
 
 #if USE_AUDIO_ENGINE
@@ -83,7 +82,6 @@ bool AppDelegate::applicationDidFinishLaunching() {
     {        
         director->setContentScaleFactor(MIN(smallResolutionSize.height/designResolutionSize.height, smallResolutionSize.width/designResolutionSize.width));
     }
-
     register_all_packages();
 
     // create a scene. it's an autorelease object
