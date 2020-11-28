@@ -1,3 +1,4 @@
+#pragma once
 #include "Goblin.h"
 
 Goblin::Goblin() {
