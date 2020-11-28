@@ -1,6 +1,6 @@
 #pragma once
 #include "Tower.h"
-#include "../Classes/json/json.hpp"
+
 class BasicTower : public Tower
 {
 private:

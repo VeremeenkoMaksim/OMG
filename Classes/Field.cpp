@@ -130,4 +130,3 @@ bool Field::TilesIsNeighbors(TTile * tile1, TTile * tile2) {
 		abs(tile1->GetTilePos().x - tile2->GetTilePos().x) == 0 && abs(tile1->GetTilePos().y - tile2->GetTilePos().y) == 1;
 }
 
-void Field::

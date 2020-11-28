@@ -3,5 +3,9 @@
 		"Stats" : { "AttackSpeed" : 30, "Damage" : 5, "Range" : 10},
 		"Image" : "../Resources/enemies/Goblin/Idle/0.png",
 		"Scale" : 0.1
+	},
+	"MainHouse" : {
+		"Image" : "../Resources/towers/images/MainHouse.png",
+		"Scale" : 0.1
 	}
 }
