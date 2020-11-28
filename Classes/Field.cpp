@@ -41,6 +41,7 @@ Field* Field::CreateField(int width, int height) {
 		}
 	}
 	SetTheWay();
+	CreateContent();
 	return this;
 }
 
@@ -130,3 +131,22 @@ bool Field::TilesIsNeighbors(TTile * tile1, TTile * tile2) {
 		abs(tile1->GetTilePos().x - tile2->GetTilePos().x) == 0 && abs(tile1->GetTilePos().y - tile2->GetTilePos().y) == 1;
 }
 
+void Field::CreateContent() {
+	std::ifstream fin((std::string) dataField["Content"]["Level_1"]);
+	fin >> width;
+	fin >> height;
+	std::string path;
+	std::string value;
+	for (auto i = height - 1; i >= 0; i--) {
+		for (auto j = 0; j < width; j++) {
+			fin >> value;
+			if (value != "0" && value != "1") {
+				path = dataField["Content"][value]["Path"];
+				auto sprite = cocos2d::Sprite::create(path);
+				sprite->setScale(dataField["Content"][value]["Scale"]);
+				tiles[i][j]->addChild(sprite, 100);
+			}	
+		}
+	}
+	fin.close();
+}

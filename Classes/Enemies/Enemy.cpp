@@ -26,22 +26,25 @@ void Enemy::update(float dt) {
 }
 
 bool Enemy::Move(float dt) {
-	if (wayNum < Field::GetInstance()->GetTheWay().size()-1) {
+	if (wayNum < Field::GetInstance()->GetTheWay().size() - 1) {
 		distanceToPosOnTheWay = nextPosOnTheWay - this->getPosition();
-		if (distanceToPosOnTheWay.x * direction.x > 10  || distanceToPosOnTheWay.y  * direction.y > 10) {
+		if (distanceToPosOnTheWay.x * direction.x > 10 || distanceToPosOnTheWay.y * direction.y > 10) {
 			this->setPosition(this->getPosition().x + speed * dt * direction.x, this->getPosition().y + speed * dt * direction.y);
 		}
-		else if((wayNum < Field::GetInstance()->GetTheWay().size() - 1)) {
+		else {
 			this->setPosition(nextPosOnTheWay);
 			wayNum++;
-			nextPosOnTheWay = Field::GetInstance()->GetTheWay()[wayNum]->getPosition();
-			distanceToPosOnTheWay = nextPosOnTheWay - this->getPosition();
-			direction = FindDirection(distanceToPosOnTheWay);
-		} else this->setPosition(nextPosOnTheWay);
+			if ((wayNum < Field::GetInstance()->GetTheWay().size())) {
+				nextPosOnTheWay = Field::GetInstance()->GetTheWay()[wayNum]->getPosition();
+				distanceToPosOnTheWay = nextPosOnTheWay - this->getPosition();
+				direction = FindDirection(distanceToPosOnTheWay);
+			}
+		}
 		return true;
 	}
-	else
+	else {
 		return false;
+	}
 }
 
 void Enemy::DamageDeal() {

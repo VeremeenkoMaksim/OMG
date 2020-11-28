@@ -7,7 +7,6 @@ Goblin::Goblin() {
 }
 bool Goblin::init() {
 	Enemy::init();
-	std::string s = data["Image"];
 	sprite = cocos2d::Sprite::create(data["Image"]);
 	this->addChild(sprite);
 	this->setScale(data["Scale"]);
