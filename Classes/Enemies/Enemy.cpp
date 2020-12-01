@@ -2,13 +2,14 @@
 #include "Enemy.h"
 #include "Field.h"
 #include <cmath>
+#include "towers/mainHouse.h"
 
 #define WIDTH_AND_HEIGTH_OF_TILE 76.f;
 bool Enemy::init() {
 	
 	float f = WIDTH_AND_HEIGTH_OF_TILE;
 	nextPosOnTheWay = Field::GetInstance()->GetTheWay()[wayNum]->getPosition();
-	this->setPosition(nextPosOnTheWay - cocos2d::Vec2(f, 0));
+	this->setPosition(nextPosOnTheWay);
 	distanceToPosOnTheWay = nextPosOnTheWay - this->getPosition();
 	direction = FindDirection(distanceToPosOnTheWay);
 	this->scheduleUpdate();
@@ -20,13 +21,14 @@ void Enemy::ReceiveDamage(float damage) {
 }
 
 void Enemy::update(float dt) {
-	Move(dt);
+	if (!Move(dt))
+		DamageDeal();
 }
 
-void Enemy::Move(float dt) {
-	if (wayNum < Field::GetInstance()->GetTheWay().size()) {
+bool Enemy::Move(float dt) {
+	if (wayNum < Field::GetInstance()->GetTheWay().size() - 1) {
 		distanceToPosOnTheWay = nextPosOnTheWay - this->getPosition();
-		if (distanceToPosOnTheWay.x * direction.x > 10  || distanceToPosOnTheWay.y  * direction.y > 10) {
+		if (distanceToPosOnTheWay.x * direction.x > 10 || distanceToPosOnTheWay.y * direction.y > 10) {
 			this->setPosition(this->getPosition().x + speed * dt * direction.x, this->getPosition().y + speed * dt * direction.y);
 		}
 		else {
@@ -38,9 +40,15 @@ void Enemy::Move(float dt) {
 				direction = FindDirection(distanceToPosOnTheWay);
 			}
 		}
-	} else {
-		CCLOG("sd");
+		return true;
 	}
+	else {
+		return false;
+	}
+}
+
+void Enemy::DamageDeal() {
+	MainHouse::GetInstance()->ReceiveDamage(damage);
 }
 
 cocos2d::Vec2 Enemy::FindDirection(cocos2d::Vec2 distanceToPosOnTheWay) {
@@ -55,3 +63,6 @@ cocos2d::Vec2 Enemy::FindDirection(cocos2d::Vec2 distanceToPosOnTheWay) {
 		dir.y = 1;
 	return dir;
 }
+
+
+

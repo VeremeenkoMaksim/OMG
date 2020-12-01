@@ -2,8 +2,9 @@
 #include "Level_1.h"
 #include "Field.h"
 #include "enemies/Goblin.h"
-
+#include "towers/MainHouse.h"
 #include "towers/BasicTower.h"
+
 
 
 
@@ -42,8 +43,14 @@ bool Level_1::init()
     Enemy* goblin = new Goblin();
     enemies->addChild(goblin, 10);
 
-    this->scheduleUpdate();
+    Tower * basicTower = new BasicTower();//----------adding basictower
+    this->addChild(basicTower, 10);
+    
+    MainHouse* mainHouse = new MainHouse();
+    this->addChild(mainHouse, 10);
 
+    this->scheduleUpdate();
+    
     return true;
 }
 
