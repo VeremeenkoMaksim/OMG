@@ -46,8 +46,8 @@ bool Level_1::init()
     Tower * basicTower = new BasicTower();//----------adding basictower
     this->addChild(basicTower, 10);
     
-    MainHouse* mainHouse = new MainHouse();
-    this->addChild(mainHouse, 10);
+  
+    this->addChild(MainHouse::GetInstance(), 10);
 
     this->scheduleUpdate();
     

@@ -21,12 +21,14 @@ void Enemy::ReceiveDamage(float damage) {
 }
 
 void Enemy::update(float dt) {
-	if (!Move(dt))
+	if (!Move(dt)) {
 		DamageDeal();
+		cocos2d::Director::getInstance()->getRunningScene()->removeChild(this, false);
+	}
 }
 
 bool Enemy::Move(float dt) {
-	if (wayNum < Field::GetInstance()->GetTheWay().size() - 1) {
+	if (wayNum < Field::GetInstance()->GetTheWay().size()) {
 		distanceToPosOnTheWay = nextPosOnTheWay - this->getPosition();
 		if (distanceToPosOnTheWay.x * direction.x > 10 || distanceToPosOnTheWay.y * direction.y > 10) {
 			this->setPosition(this->getPosition().x + speed * dt * direction.x, this->getPosition().y + speed * dt * direction.y);
@@ -50,6 +52,7 @@ bool Enemy::Move(float dt) {
 void Enemy::DamageDeal() {
 	MainHouse::GetInstance()->ReceiveDamage(damage);
 }
+
 
 cocos2d::Vec2 Enemy::FindDirection(cocos2d::Vec2 distanceToPosOnTheWay) {
 	cocos2d::Vec2 dir;
