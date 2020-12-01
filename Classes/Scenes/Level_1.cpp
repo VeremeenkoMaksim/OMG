@@ -42,16 +42,6 @@ bool Level_1::init()
     Enemy* goblin = new Goblin();
     enemies->addChild(goblin, 10);
 
-    Tower * basicTower = new BasicTower();//----------adding basictower
-    this->addChild(basicTower, 10);
-    
-
-
-	Node *enemies = new Node();
-	this->addChild(enemies);
-	Enemy * goblin = new Goblin();
-	enemies->addChild(goblin, 10);
-
     this->scheduleUpdate();
 
     return true;
