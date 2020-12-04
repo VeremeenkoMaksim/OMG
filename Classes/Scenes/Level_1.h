@@ -4,7 +4,7 @@ class Level_1 : public cocos2d::Scene
 {
 private:
 	void imgui();
-
+    cocos2d::Node* enemies;
 public:
     static cocos2d::Scene* createScene();
 

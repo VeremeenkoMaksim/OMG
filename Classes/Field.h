@@ -20,6 +20,7 @@ private:
 	bool TilesIsNeighbors(TTile * tile1, TTile * tile2);
 	nlohmann::json dataField;
 	nlohmann::json dataResolution;
+	void CreateContent();
 
 public:
 	TTile *** tiles;

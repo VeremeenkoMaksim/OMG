@@ -2,6 +2,11 @@
 #include "Level_1.h"
 #include "Field.h"
 #include "enemies/Goblin.h"
+#include "towers/MainHouse.h"
+#include "towers/BasicTower.h"
+
+
+
 
 USING_NS_CC;
 
@@ -26,15 +31,30 @@ bool Level_1::init()
     resolution->setString(std::to_string(visibleSize.height) + " " + std::to_string(visibleSize.width));
     resolution->setPosition(Vec2(origin.x + visibleSize.width / 2,
         origin.y + visibleSize.height - resolution->getContentSize().height + 10));
+    
     this->addChild(resolution);
 
 	this->addChild(Field::GetInstance()->CreateField(13,10), -1);
-	Enemy * goblin = new Goblin();
-	this->addChild(goblin, 10);
+
+
+    Node* enemies = new Node();
+    this->addChild(enemies);
+
+    Enemy* goblin = new Goblin();
+    enemies->addChild(goblin, 10);
+
+    Tower * basicTower = new BasicTower();//----------adding basictower
+    this->addChild(basicTower, 10);
+    
+  
+    this->addChild(MainHouse::GetInstance(), 10);
+
     this->scheduleUpdate();
+    
     return true;
 }
 
 void Level_1::update(float dt) {
-	//imgui();
+
+
 }

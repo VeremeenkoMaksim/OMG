@@ -1,3 +1,4 @@
+#pragma once
 #include "Field.h"
 #include <fstream>
 
@@ -6,7 +7,7 @@ Field::Field() {
 	dataField = JsonInstance::GetInstance()->GetData("field");
 	int resolutionX = cocos2d::Director::getInstance()->getOpenGLView()->getFrameSize().width;
 	dataResolution = JsonInstance::GetInstance()->GetData("resolutions")[std::to_string(resolutionX)];
-	if (dataResolution.empty) {
+	if (dataResolution.empty()) {
 		dataResolution = JsonInstance::GetInstance()->GetData("resolutions")["1024"];
 	}
 }
@@ -40,6 +41,7 @@ Field* Field::CreateField(int width, int height) {
 		}
 	}
 	SetTheWay();
+	CreateContent();
 	return this;
 }
 
@@ -127,4 +129,24 @@ std::vector<TTile*> Field::sortFullWay(std::vector<TTile*> fullWay, cocos2d::Vec
 bool Field::TilesIsNeighbors(TTile * tile1, TTile * tile2) {
 	return abs(tile1->GetTilePos().x - tile2->GetTilePos().x) == 1 && abs(tile1->GetTilePos().y - tile2->GetTilePos().y) == 0 ||
 		abs(tile1->GetTilePos().x - tile2->GetTilePos().x) == 0 && abs(tile1->GetTilePos().y - tile2->GetTilePos().y) == 1;
+}
+
+void Field::CreateContent() {
+	std::ifstream fin((std::string) dataField["Content"]["Level_1"]);
+	fin >> width;
+	fin >> height;
+	std::string path;
+	std::string value;
+	for (auto i = height - 1; i >= 0; i--) {
+		for (auto j = 0; j < width; j++) {
+			fin >> value;
+			if (value != "0" && value != "1") {
+				path = dataField["Content"][value]["Path"];
+				auto sprite = cocos2d::Sprite::create(path);
+				sprite->setScale(dataField["Content"][value]["Scale"]);
+				tiles[i][j]->addChild(sprite, 100);
+			}	
+		}
+	}
+	fin.close();
 }

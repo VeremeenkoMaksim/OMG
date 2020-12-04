@@ -24,6 +24,10 @@ xcuserdata
 *.old
 Pods/*
 
+#CMakeFiles
+CMakeFiles/
+
+
 #cocos2d-x
 libs/
 bin/
@@ -50,6 +54,7 @@ out/
 
 .cocos-project.json
 cocos2d/
+engine/
 proj.android/
 proj.ios_mac/
 proj.linux/

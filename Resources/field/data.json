@@ -11,6 +11,19 @@
 
 	"Ways" : {
 		"Level_1" : "../Resources/field/ways/level_1_way.txt"
-	}
+	},
+	"Content" : {
+		"Level_1" : "../Resources/field/content/data/level_1_content.txt",
 
+		"2" : { 
+			"Path" : "../Resources/field/content/tree_1.png",
+			"Scale" : 0.1
+		},
+
+		"3" : { 
+			"Path" : "../Resources/field/content/tree_1.png",
+			"Scale" : 0.4
+		}
+
+	}
 }

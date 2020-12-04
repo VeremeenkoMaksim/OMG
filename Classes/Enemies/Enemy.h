@@ -1,3 +1,6 @@
+
+#pragma once
+
 #include "cocos2d.h"
 #include "../Classes/Json/JsonInstance.h"
 
@@ -9,7 +12,8 @@ protected:
 	float damage;
 	cocos2d::Sprite * sprite;
 	int wayNum = 0;
-	void Move(float dt);
+	bool Move(float dt);
+
 	cocos2d::Vec2 nextPosOnTheWay;
 	cocos2d::Vec2 distanceToPosOnTheWay;
 	cocos2d::Vec2 direction;
@@ -17,6 +21,7 @@ protected:
 	nlohmann::json data;
 public:
 	virtual bool init();
+	virtual void DamageDeal();
 	virtual void ReceiveDamage(float damage);
 	virtual void update(float dt);
 };
