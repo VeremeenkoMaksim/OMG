@@ -1,29 +1,26 @@
 #pragma once
 #include "Level_1.h"
 #include "Field.h"
-#include "enemies/Goblin.h"
 #include "towers/MainHouse.h"
-#include "towers/BasicTower.h"
-
-
-
 
 USING_NS_CC;
-
+Level_1* Level_1::singleton = 0;
 Scene* Level_1::createScene()
 {
     return Level_1::create();
 }
 
+Level_1 * Level_1::GetInstance() {
+	return singleton;
+}
+
 bool Level_1::init()
 {
-    //////////////////////////////
-    // 1. super init first
     if (!Scene::init())
     {
         return false;
     }
-
+	singleton = this;
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
@@ -36,12 +33,13 @@ bool Level_1::init()
 
 	this->addChild(Field::GetInstance()->CreateField(13,10), -1);
 
-
-    Node* enemies = new Node();
-    this->addChild(enemies);
+	auto lab = cocos2d::Label::create();
+	lab->setString("1000");
+	this->addChild(lab);
 
     Enemy* goblin = new Goblin();
-    enemies->addChild(goblin, 10);
+	enemies.push_back(goblin);
+	this->addChild(goblin, 10);
 
     Tower * basicTower = new BasicTower();//----------adding basictower
     this->addChild(basicTower, 10);
@@ -57,4 +55,8 @@ bool Level_1::init()
 void Level_1::update(float dt) {
 
 
+}
+
+std::vector<Enemy*> Level_1::GetEnemies() {
+	return enemies;
 }

@@ -1,4 +1,3 @@
-
 #include "JsonInstance.h"
 #include <fstream>
 

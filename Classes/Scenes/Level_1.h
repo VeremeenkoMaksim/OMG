@@ -1,22 +1,21 @@
+#pragma once
 #include "cocos2d.h"
+#include "enemies/Goblin.h"
+#include "towers/BasicTower.h"
+#include <vector>
 
 class Level_1 : public cocos2d::Scene
 {
 private:
-	void imgui();
-    cocos2d::Node* enemies;
+	static Level_1 * singleton;
+	std::vector<Enemy*> enemies = {};
 public:
     static cocos2d::Scene* createScene();
-
+	static Level_1 * GetInstance();
     virtual bool init();
-
-    // a selector callback
-    void menuCloseCallback(cocos2d::Ref* pSender);
-
-    // implement the "static create()" method manually
-     CREATE_FUNC(Level_1);
-
-     void update(float dt);
+	std::vector<Enemy*> GetEnemies();
+    CREATE_FUNC(Level_1);
+    void update(float dt);
 };
 
 

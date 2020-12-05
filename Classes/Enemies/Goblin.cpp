@@ -8,10 +8,16 @@ Goblin::Goblin() {
 bool Goblin::init() {
 	Enemy::init();
 	sprite = cocos2d::Sprite::create(data["Image"]);
+	sprite->setScale(data["Scale"]);
 	this->addChild(sprite);
-	this->setScale(data["Scale"]);
 	health = data["Stats"]["Health"];
 	speed = data["Stats"]["Speed"];
 	damage = data["Stats"]["Damage"];
+
+
+	label = cocos2d::Label::create();
+	label->setString(std::to_string(health));
+	label->setPosition(0, 45);
+	this->addChild(label, 10);
 	return true;
 }

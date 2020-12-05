@@ -21,13 +21,13 @@ MainHouse::MainHouse() {
 bool MainHouse::init() {
 	sprite = cocos2d::Sprite::create(data["Image"]);
 	sprite->setScale(data["Scale"]);
-	cocos2d::Vec2 position = Field::GetInstance()->GetTheWay()[Field::GetInstance()->GetTheWay().size()-1]->getPosition();
+	cocos2d::Vec2 position = Field::GetInstance()->GetNodesOfTheWay()[Field::GetInstance()->GetNodesOfTheWay().size()-1]->getPosition();
 	this->setPosition(position.x, position.y);
 	this->addChild(sprite, 10);
 	return true;
 }
 
 void MainHouse::ReceiveDamage(float damage) {
-		health -= damage;
-		label->setString(std::to_string(health));
+	health -= damage;
+	label->setString(std::to_string(health));
 }

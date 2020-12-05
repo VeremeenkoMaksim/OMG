@@ -1,7 +1,7 @@
 {
 	"BasicTower" : {
-		"Stats" : { "AttackSpeed" : 30, "Damage" : 5, "Range" : 10},
-		"Image" : "../Resources/enemies/Goblin/Idle/0.png",
+		"Stats" : { "AttackSpeed" : 30, "Damage" : 5, "Range" : 200, "Cooldown" : 2},
+		"Image" : "../Resources/towers/images/BasicTower.png",
 		"Scale" : 0.1
 	},
 	"MainHouse" : {

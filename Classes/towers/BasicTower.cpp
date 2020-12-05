@@ -16,11 +16,12 @@ bool BasicTower::init() {
 	range = data["Stats"]["Range"];
 	attackSpeed = data["Stats"]["AttackSpeed"];
 	damage = data["Stats"]["Damage"];
+	cooldown = data["Stats"]["Cooldown"];
 	return true;
 }
 
 void BasicTower::update(float dt)
 {
-
+	Tower::update(dt);
 }
 

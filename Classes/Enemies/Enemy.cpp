@@ -4,20 +4,19 @@
 #include <cmath>
 #include "towers/mainHouse.h"
 
-#define WIDTH_AND_HEIGTH_OF_TILE 76.f;
 bool Enemy::init() {
-	
-	float f = WIDTH_AND_HEIGTH_OF_TILE;
-	nextPosOnTheWay = Field::GetInstance()->GetTheWay()[wayNum]->getPosition();
+	nextPosOnTheWay = Field::GetInstance()->GetNodesOfTheWay()[wayNum]->getPosition();
 	this->setPosition(nextPosOnTheWay);
 	distanceToPosOnTheWay = nextPosOnTheWay - this->getPosition();
 	direction = FindDirection(distanceToPosOnTheWay);
+
 	this->scheduleUpdate();
 	return true;
 }
 
 void Enemy::ReceiveDamage(float damage) {
 	health -= damage;
+	label->setString(std::to_string(health));
 }
 
 void Enemy::update(float dt) {
@@ -26,7 +25,7 @@ void Enemy::update(float dt) {
 }
 
 bool Enemy::Move(float dt) {
-	if (wayNum < Field::GetInstance()->GetTheWay().size() - 1) {
+	if (wayNum < Field::GetInstance()->GetNodesOfTheWay().size()) {
 		distanceToPosOnTheWay = nextPosOnTheWay - this->getPosition();
 		if (distanceToPosOnTheWay.x * direction.x > 10 || distanceToPosOnTheWay.y * direction.y > 10) {
 			this->setPosition(this->getPosition().x + speed * dt * direction.x, this->getPosition().y + speed * dt * direction.y);
@@ -34,8 +33,8 @@ bool Enemy::Move(float dt) {
 		else {
 			this->setPosition(nextPosOnTheWay);
 			wayNum++;
-			if ((wayNum < Field::GetInstance()->GetTheWay().size())) {
-				nextPosOnTheWay = Field::GetInstance()->GetTheWay()[wayNum]->getPosition();
+			if ((wayNum < Field::GetInstance()->GetNodesOfTheWay().size())) {
+				nextPosOnTheWay = Field::GetInstance()->GetNodesOfTheWay()[wayNum]->getPosition();
 				distanceToPosOnTheWay = nextPosOnTheWay - this->getPosition();
 				direction = FindDirection(distanceToPosOnTheWay);
 			}

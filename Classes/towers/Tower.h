@@ -9,13 +9,14 @@ protected:
 	float damage = 10;
 	float currCooldown;
 	float cooldown;
-	cocos2d::Node* targetEnemy;
+	Enemy* targetEnemy = nullptr;
 	cocos2d::Sprite* sprite;
-
+	cocos2d::Sprite* projectileSprite;
+	void Shoot(float damage);
 public:
 	virtual bool init();
 	virtual bool CanShoot();
-	virtual void SearchTarget();
+	virtual bool SearchTarget();
 	//virtual void Shoot();
 	virtual void update(float dt);
 };

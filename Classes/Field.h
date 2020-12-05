@@ -12,7 +12,7 @@ private:
 	int height;
 	std::string** GetDataField();
 	static Field * singleton;
-	std::vector<TTile*> way = {};
+	std::vector<TTile*> nodeOfTheWay = {};
 	std::vector<TTile*> fullWay = {};
 	void SetTheWay();
 	void AutoSetTheWay(cocos2d::Vec2 startPosition);
@@ -26,5 +26,5 @@ public:
 	TTile *** tiles;
 	Field * CreateField(int width, int height);
 	static Field * GetInstance();
-	std::vector<TTile*> GetTheWay();
+	std::vector<TTile*> GetNodesOfTheWay();
 };

@@ -19,6 +19,8 @@ protected:
 	cocos2d::Vec2 direction;
 	cocos2d::Vec2 FindDirection(cocos2d::Vec2 distanceToPosOnTheWay);
 	nlohmann::json data;
+
+	cocos2d::Label *label;
 public:
 	virtual bool init();
 	virtual void DamageDeal();
