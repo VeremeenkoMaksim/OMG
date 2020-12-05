@@ -1,6 +1,4 @@
-
 #pragma once
-
 #include "cocos2d.h"
 #include "../Classes/Json/JsonInstance.h"
 
@@ -19,6 +17,8 @@ protected:
 	cocos2d::Vec2 direction;
 	cocos2d::Vec2 FindDirection(cocos2d::Vec2 distanceToPosOnTheWay);
 	nlohmann::json data;
+	
+	void Dead();
 
 	cocos2d::Label *label;
 public:
@@ -26,4 +26,7 @@ public:
 	virtual void DamageDeal();
 	virtual void ReceiveDamage(float damage);
 	virtual void update(float dt);
+	bool isDead() {
+		return health <= 0;
+	};
 };

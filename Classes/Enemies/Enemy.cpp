@@ -18,14 +18,14 @@ void Enemy::ReceiveDamage(float damage) {
 	health -= damage;
 	label->setString(std::to_string(health));
 	if (health <= 0) {
-		cocos2d::Director::getInstance()->getRunningScene()->removeChild(this, false);
+		
 	}
 }
 
 void Enemy::update(float dt) {
 	if (!Move(dt)) {
 		DamageDeal();
-		cocos2d::Director::getInstance()->getRunningScene()->removeChild(this, false);
+		cocos2d::Director::getInstance()->getRunningScene()->getChildByName("Enemies")->removeChild(this, false);
 	}
 }
 
@@ -68,6 +68,3 @@ cocos2d::Vec2 Enemy::FindDirection(cocos2d::Vec2 distanceToPosOnTheWay) {
 		dir.y = 1;
 	return dir;
 }
-
-
-

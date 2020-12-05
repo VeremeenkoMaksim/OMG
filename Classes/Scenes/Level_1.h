@@ -8,12 +8,12 @@ class Level_1 : public cocos2d::Scene
 {
 private:
 	static Level_1 * singleton;
-	std::vector<Enemy*> enemies = {};
+	float cooldown = 0;
+	cocos2d::Node * enemies;
 public:
     static cocos2d::Scene* createScene();
 	static Level_1 * GetInstance();
     virtual bool init();
-	std::vector<Enemy*> GetEnemies();
     CREATE_FUNC(Level_1);
     void update(float dt);
 };

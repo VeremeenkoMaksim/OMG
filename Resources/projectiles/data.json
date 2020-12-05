@@ -1,0 +1,6 @@
+{
+	"BasicProjectile" : {
+		"Image" : "../Resources/projectiles/images/BasicProjectile.png",
+		"Scale" : 0.2
+	}
+}
