@@ -20,8 +20,8 @@ void Projectile::update(float dt) {
 
 bool Projectile::MoveToTarget(Enemy * target, float dt) {
 	auto distance = this->getPosition().distance(target->getPosition());
-	if (distance > 10) {
-		auto direction = FindDirection(target->getPosition(), this->getPosition());
+	if (distance > speed * dt) {
+		auto direction = (target->getPosition() - this->getPosition()).getNormalized();
 		this->setPosition(this->getPosition().x + speed * dt * direction.x, this->getPosition().y + speed * dt * direction.y);
 	}
 	else return true;
