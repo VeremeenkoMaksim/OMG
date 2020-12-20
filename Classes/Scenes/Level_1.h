@@ -13,6 +13,7 @@ public:
     static cocos2d::Scene* createScene();
 	static Level_1 * GetInstance();
     virtual bool init();
+	void GameOver(bool win);
 	std::vector<Enemy*> GetEnemies();
     CREATE_FUNC(Level_1);
     void update(float dt);

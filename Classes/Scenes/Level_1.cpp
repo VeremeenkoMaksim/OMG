@@ -2,6 +2,8 @@
 #include "Level_1.h"
 #include "Field.h"
 #include "towers/MainHouse.h"
+#include "AudioEngine.h"
+#include "LevelFinishScene.h"
 
 USING_NS_CC;
 Level_1* Level_1::singleton = 0;
@@ -54,9 +56,19 @@ bool Level_1::init()
 
 void Level_1::update(float dt) {
 
-
+ 
 }
 
 std::vector<Enemy*> Level_1::GetEnemies() {
 	return enemies;
+}
+
+void Level_1::GameOver(bool win) {
+    Scene* scene = LevelFinish::createScene();
+    TransitionFade* transition = TransitionFade::create(2, scene);
+    dynamic_cast<LevelFinish *>(scene)->win = win;
+    
+    //AudioEngine::stopAll();
+    //AudioEngine::end();
+    Director::getInstance()->replaceScene(scene);
 }

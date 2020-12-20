@@ -1,6 +1,7 @@
 #pragma once
 #include "MainHouse.h"
 #include "Field.h"
+#include "../scenes/Level_1.h"
 MainHouse* MainHouse::singleton = 0;
 
 MainHouse* MainHouse::GetInstance() {
@@ -30,4 +31,5 @@ bool MainHouse::init() {
 void MainHouse::ReceiveDamage(float damage) {
 	health -= damage;
 	label->setString(std::to_string(health));
+	if (health <= 0) Level_1::GetInstance()->GameOver(false);
 }

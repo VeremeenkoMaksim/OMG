@@ -12,11 +12,10 @@ protected:
 	Enemy* targetEnemy = nullptr;
 	cocos2d::Sprite* sprite;
 	cocos2d::Sprite* projectileSprite;
-	void Shoot(float damage);
+	virtual void Shoot(float damage);
 public:
 	virtual bool init();
 	virtual bool CanShoot();
 	virtual bool SearchTarget();
-	//virtual void Shoot();
 	virtual void update(float dt);
 };
