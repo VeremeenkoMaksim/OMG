@@ -4,7 +4,7 @@
 #include <vector>
 
 
-BasicTower::BasicTower() {
+BasicTower::BasicTower(int tileX, int tileY) : Tower(tileX, tileY) {
 	data = JsonInstance::GetInstance()->GetData("towers")["BasicTower"];
 	init();
 }
@@ -25,3 +25,7 @@ void BasicTower::update(float dt)
 	Tower::update(dt);
 }
 
+void BasicTower::Shoot(float damage) {
+
+	Tower::Shoot(damage);
+}

@@ -34,19 +34,23 @@ bool Level_1::init()
     this->addChild(resolution);
 
 	this->addChild(Field::GetInstance()->CreateField(13,10), -1);
+	
+	enemies = cocos2d::Node::create();
+	enemies->setName("Enemies");
+	this->addChild(enemies);
 
-	auto lab = cocos2d::Label::create();
-	lab->setString("1000");
-	this->addChild(lab);
-
-    Enemy* goblin = new Goblin();
-	enemies.push_back(goblin);
-	this->addChild(goblin, 10);
-
-    Tower * basicTower = new BasicTower();//----------adding basictower
+    Tower * basicTower = new BasicTower(6,4);
     this->addChild(basicTower, 10);
+
+	Tower * basicTower1 = new BasicTower(8, 4);
+	this->addChild(basicTower1, 10);
     
-  
+	Tower * basicTower2 = new BasicTower(8, 5);
+	this->addChild(basicTower2, 10);
+	
+	Tower * basicTower3 = new BasicTower(6, 5);
+	this->addChild(basicTower3, 10);
+
     this->addChild(MainHouse::GetInstance(), 10);
 
     this->scheduleUpdate();
@@ -56,11 +60,14 @@ bool Level_1::init()
 
 void Level_1::update(float dt) {
 
- 
-}
-
-std::vector<Enemy*> Level_1::GetEnemies() {
-	return enemies;
+    if (cooldown <= 0) {
+        Enemy* goblin = new Goblin();
+        enemies->addChild(goblin, 10);
+        cooldown = 1;
+    }
+    else {
+        cooldown -= dt;
+    }
 }
 
 void Level_1::GameOver(bool win) {

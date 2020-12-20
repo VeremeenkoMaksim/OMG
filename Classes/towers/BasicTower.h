@@ -4,10 +4,10 @@
 class BasicTower : public Tower
 {
 private:
-	nlohmann::json data;
 
+	virtual void Shoot(float damage);
 public:
 	virtual bool init() override;
 	virtual void update(float dt);
-	BasicTower();
+	BasicTower(int tileX, int tileY);
 };

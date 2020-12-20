@@ -3,10 +3,14 @@
 #include "Field.h"
 #include "../Classes/enemies/Enemy.h"
 #include "../Classes/scenes/Level_1.h"
+#include "../Classes/projectiles/BasicProjectile.h"
 #include <vector>
 
+
+Tower::Tower(int tileX, int tileY) {
+	position = Field::GetInstance()->tiles[tileY][tileX]->getPosition();
+}
 bool Tower::init() {
-	cocos2d::Vec2 position = Field::GetInstance()->tiles[5][5]->getPosition();
 	this->setPosition(position);
 	currCooldown = 0;
 	this->scheduleUpdate();
@@ -39,13 +43,11 @@ bool Tower::SearchTarget() {
 	}
 	if (!targetEnemy) {
 		float minDistance = INFINITE;
-		auto nodes = cocos2d::Director::getInstance()->getRunningScene()->getChildren();
-		std::vector<Enemy*> enemies = Level_1::GetInstance()->GetEnemies();
-		for (int i = 0; i < enemies.size(); i++) {
-			auto distance = this->getPosition().distance(enemies.at(i)->getPosition());
+		auto enemiesNodes = cocos2d::Director::getInstance()->getRunningScene()->getChildByName("Enemies")->getChildren();
+		for (int i = 0; i < enemiesNodes.size(); i++) {
+			auto distance = this->getPosition().distance(enemiesNodes.at(i)->getPosition());
 			if (distance < minDistance && distance <= range) {
-				targetEnemy = enemies.at(i);
-				targetEnemy->addChild(cocos2d::DrawNode::create());
+				targetEnemy = dynamic_cast<Enemy*>(enemiesNodes.at(i));
 				minDistance = distance;
 			}
 		}
@@ -58,5 +60,13 @@ bool Tower::SearchTarget() {
 
 void Tower::Shoot(float damage) {
 	currCooldown = cooldown;
-	targetEnemy->ReceiveDamage(damage);
+	auto projectile = new BasicProjectile(targetEnemy, attackSpeed, damage);
+	projectile->setPosition(this->getPosition());
+	this->getParent()->addChild(projectile, 10);
+
+
+	if (targetEnemy->isDead()) 
+		cocos2d::Director::getInstance()->getRunningScene()->getChildByName("Enemies")->removeChild(targetEnemy,false); {
+		targetEnemy = nullptr;
+	}
 }
