@@ -31,5 +31,5 @@ bool MainHouse::init() {
 void MainHouse::ReceiveDamage(float damage) {
 	health -= damage;
 	label->setString(std::to_string(health));
-	if (health <= 0) Level_1::GetInstance()->GameOver(false);
+	if (health <= 0) Level_1::GetInstance()->GameOver(true);
 }

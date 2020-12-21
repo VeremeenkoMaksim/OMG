@@ -61,19 +61,22 @@ bool Level_1::init()
 void Level_1::update(float dt) {
 
     if (cooldown <= 0) {
-        Enemy* goblin = new Goblin();
-        enemies->addChild(goblin, 10);
-        cooldown = 1;
+        if (waveCount > 0) {
+            Enemy* goblin = new Goblin();
+            enemies->addChild(goblin, 10);
+            cooldown = 1;
+            waveCount--;
+        }
     }
     else {
         cooldown -= dt;
     }
 }
 
-void Level_1::GameOver(bool win) {
+void Level_1::GameOver(bool lose) {
     Scene* scene = LevelFinish::createScene();
     TransitionFade* transition = TransitionFade::create(2, scene);
-    dynamic_cast<LevelFinish *>(scene)->win = win;
+    dynamic_cast<LevelFinish *>(scene)->lose = lose;
     
     //AudioEngine::stopAll();
     //AudioEngine::end();
