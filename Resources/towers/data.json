@@ -1,8 +1,13 @@
 {
 	"BasicTower" : {
-		"Stats" : { "AttackSpeed" : 700, "Damage" : 2, "Range" : 200, "Cooldown" : 0.5},
+		"Stats" : { "AttackSpeed" : 700, "Damage" : 2, "Range" : 200, "Cooldown" : 2},
 		"Image" : "../Resources/towers/images/BasicTower.png",
 		"Scale" : 0.1
+	},
+	"FrostTower" : {
+		"Stats" : { "AttackSpeed" : 30, "Damage" : 1, "Range" : 150, "Cooldown" : 2.5},
+		"Image" : "../Resources/towers/images/FrostTower.png",
+		"Scale" : 0.2
 	},
 	"MainHouse" : {
 		"Image" : "../Resources/towers/images/MainHouse.png",

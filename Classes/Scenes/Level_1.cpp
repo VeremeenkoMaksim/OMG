@@ -2,6 +2,8 @@
 #include "Level_1.h"
 #include "Field.h"
 #include "towers/MainHouse.h"
+#include "AudioEngine.h"
+#include "LevelFinishScene.h"
 
 USING_NS_CC;
 Level_1* Level_1::singleton = 0;
@@ -69,12 +71,26 @@ void Level_1::BuyTower(Ref * sender) {
 	
 }
 void Level_1::update(float dt) {
-	if (cooldown <=0) {
-		Enemy* goblin = new Goblin();
-		enemies->addChild(goblin, 10);
-		cooldown = 1;
-	}
-	else {
-		cooldown -= dt;
-	}
+
+    if (cooldown <= 0) {
+        if (waveCount > 0) {
+            Enemy* goblin = new Goblin();
+            enemies->addChild(goblin, 10);
+            cooldown = 1;
+            waveCount--;
+        }
+    }
+    else {
+        cooldown -= dt;
+    }
+}
+
+void Level_1::GameOver(bool lose) {
+    Scene* scene = LevelFinish::createScene();
+    TransitionFade* transition = TransitionFade::create(2, scene);
+    dynamic_cast<LevelFinish *>(scene)->lose = lose;
+    
+    //AudioEngine::stopAll();
+    //AudioEngine::end();
+    Director::getInstance()->replaceScene(scene);
 }
