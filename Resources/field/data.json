@@ -1,6 +1,7 @@
 {
 	"Tiles": {
 		"WayTile": "1",
+		"Rect" : "field/tiles/SelectRect.png",
 		"0": "field/tiles/0.jpg",
 		"1": "field/tiles/1.jpg"
 	},

@@ -6,6 +6,7 @@
 #include "LevelFinishScene.h"
 
 USING_NS_CC;
+
 Level_1* Level_1::singleton = 0;
 Scene* Level_1::createScene()
 {
@@ -26,37 +27,21 @@ bool Level_1::init()
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-    auto resolution = Label::create();
-    resolution->setString(std::to_string(visibleSize.height) + " " + std::to_string(visibleSize.width));
-    resolution->setPosition(Vec2(origin.x + visibleSize.width / 2,
-        origin.y + visibleSize.height - resolution->getContentSize().height + 10));
+	resolution = Director::getInstance()->getOpenGLView()->getFrameSize();
     
-    this->addChild(resolution);
-
-	this->addChild(Field::GetInstance()->CreateField(13,10), -1);
+	this->addChild(Field::GetInstance()->CreateField(13,10), -1); //hardcode layer
 	
 	enemies = cocos2d::Node::create();
 	enemies->setName("Enemies");
 	this->addChild(enemies);
-
-    Tower * basicTower = new BasicTower(6,4);
-    this->addChild(basicTower, 10);
-
-	Tower * basicTower1 = new BasicTower(8, 4);
-	this->addChild(basicTower1, 10);
-    
-	Tower * basicTower2 = new BasicTower(8, 5);
-	this->addChild(basicTower2, 10);
-	
-	Tower * basicTower3 = new BasicTower(6, 5);
-	this->addChild(basicTower3, 10);
 
     this->addChild(MainHouse::GetInstance(), 10);
 
     this->scheduleUpdate();
     
 	auto buyTowerBtn = MenuItemImage::create("UI/buttons/images/buyTowerBtn.png", "UI/buttons/images/buyTowerBtnSelected.png", CC_CALLBACK_1(Level_1::BuyTower, this));
-	buyTowerBtn->setPosition(970, 30);
+	buyTowerBtn->setLocalZOrder(1000); //hardcode layer
+	buyTowerBtn->setPosition(970, 30); 
 	buyTowerBtn->setScale(0.3);
 
 	auto menu = Menu::create(buyTowerBtn, NULL);
@@ -64,11 +49,46 @@ bool Level_1::init()
 	this->addChild(menu);
 
 	auto touchListener = EventListenerTouchOneByOne::create();
+	touchListener->setSwallowTouches(true);
+	touchListener->onTouchBegan = CC_CALLBACK_2(Level_1::onTouchBegan, this);
+	Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(touchListener, this);
 
+	storeUI = StoreUI::Create();
+	this->addChild(storeUI);
+	
     return true;
 }
+
+bool Level_1::onTouchBegan(cocos2d::Touch * touch, cocos2d::Event * event) {
+	if (storeUI->building) {
+		Field::GetInstance()->RemoveGrid();
+		storeUI->building = false;
+		auto field = Field::GetInstance();
+		int tileX = touch->getLocation().x / (resolution.width/ field->GetTilesSize().width);
+		int tileY = touch->getLocation().y / (resolution.height / field->GetTilesSize().height);
+		if (field->tiles[tileY][tileX]->empty) {
+			if (storeUI->buildingTower == "BasicTower") {
+				auto tower = new BasicTower(tileX, tileY);
+				field->tiles[tileY][tileX]->SetTower(tower);
+				this->addChild(tower);
+			}
+		}
+	}
+	return true;
+}
+
 void Level_1::BuyTower(Ref * sender) {
-	
+	if (!storeUI->building) {
+		storeUI->building = false;
+	}
+
+	if (!storeUI->opened) {
+		storeUI->OpenStore();
+	}
+	else
+	{
+		storeUI->CloseStore();
+	}
 }
 void Level_1::update(float dt) {
 

@@ -1,0 +1,29 @@
+{
+	"Store" : {
+		"BgImage" : "../Resources/UI/images/bg/StoreBg.png",
+		"FrameImage" : "../Resources/UI/images/Frame.png",
+		"Content" : {
+			"1" : {
+				"Type" : "BasicTower"
+			},
+			"2" : {
+				"Type" : "BasicTower"
+			},
+			"3" : {
+				"Type" : "BasicTower"
+			},
+			"4" : {
+				"Type" : "BasicTower"
+			},
+			"5" : {
+				"Type" : "BasicTower"
+			},
+			"6" : {
+				"Type" : "BasicTower"
+			},
+			"7" : {
+				"Type" : "BasicTower"
+			}
+		}
+	}
+}

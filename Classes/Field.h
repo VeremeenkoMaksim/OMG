@@ -10,6 +10,7 @@ private:
 	Field();
 	int width;
 	int height;
+
 	std::string** GetDataField();
 	static Field * singleton;
 	std::vector<TTile*> nodeOfTheWay = {};
@@ -20,11 +21,14 @@ private:
 	bool TilesIsNeighbors(TTile * tile1, TTile * tile2);
 	nlohmann::json dataField;
 	nlohmann::json dataResolution;
-	void CreateContent();
+	void CreateObstacle();
 
 public:
 	TTile *** tiles;
 	Field * CreateField(int width, int height);
 	static Field * GetInstance();
+	cocos2d::Size GetTilesSize();
 	std::vector<TTile*> GetNodesOfTheWay();
+	void DrawGrid();
+	void RemoveGrid();
 };

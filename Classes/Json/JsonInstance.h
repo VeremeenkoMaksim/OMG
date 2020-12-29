@@ -10,6 +10,7 @@ private:
 	nlohmann::json fieldData;
 	nlohmann::json resolutionsData;
 	nlohmann::json projectilesData;
+	nlohmann::json UIData;
 
 	static JsonInstance * singleton;
 public:

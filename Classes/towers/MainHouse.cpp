@@ -12,14 +12,19 @@ MainHouse* MainHouse::GetInstance() {
 }
 MainHouse::MainHouse() {
 	data = JsonInstance::GetInstance()->GetData("towers")["MainHouse"];
-	label = cocos2d::Label::create();
-	label->setString(std::to_string(health));
-	label->setPosition(0, -45);
-	this->addChild(label,10);
+
 	init();
 }
 
 bool MainHouse::init() {
+
+	health = data["Stats"]["Health"];
+
+	label = cocos2d::Label::create();
+	label->setString(std::to_string(health));
+	label->setPosition(0, -45);
+	this->addChild(label, 10);
+
 	sprite = cocos2d::Sprite::create(data["Image"]);
 	sprite->setScale(data["Scale"]);
 	cocos2d::Vec2 position = Field::GetInstance()->GetNodesOfTheWay()[Field::GetInstance()->GetNodesOfTheWay().size()-1]->getPosition();

@@ -3,7 +3,7 @@
 class MainHouse : public cocos2d::Node {
 private: 
 	static MainHouse* singleton;
-	float health = 20;
+	float health;
 	cocos2d::Label *label;
 	nlohmann::json data;
 	cocos2d::Sprite* sprite;

@@ -1,6 +1,6 @@
 {
 	"Goblin" : {
-		"Stats" : {"Health" : 10, "Speed" : 200, "Damage" : 5},
+		"Stats" : {"Health" : 30, "Speed" : 200, "Damage" : 25},
 
 		"Image" : "../Resources/enemies/Goblin/Idle/0.png",
 

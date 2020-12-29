@@ -19,6 +19,8 @@ Field* Field::GetInstance() {
 }
 
 Field* Field::CreateField(int width, int height) {
+	this->width = width;
+	this->height = height;
 	tiles = new TTile**[height];
 	std::string ** typesTile = GetDataField();
 	for (auto i = 0; i < height; i++) {
@@ -34,27 +36,34 @@ Field* Field::CreateField(int width, int height) {
 			tiles[i][j] = new TTile(cocos2d::Vec2(j,i));
 			tiles[i][j]->addChild(cocos2d::Sprite::create(dataField["Tiles"][typesTile[i][j]]), 10);
 			tiles[i][j]->setPosition(tileSize.width/2 + offsetX + tileSize.width * j, tileSize.height/2 + offsetY + tileSize.height * i);
+
 			if (typesTile[i][j] == "1") {
 				fullWay.push_back(tiles[i][j]);
+				tiles[i][j]->empty = false;
 			}
 			this->addChild(tiles[i][j], 0);
 		}
 	}
 	SetTheWay();
-	CreateContent();
+	CreateObstacle();
 	return this;
+}
+
+cocos2d::Size Field::GetTilesSize() {
+	return cocos2d::Size(width, height);
 }
 
 std::string ** Field::GetDataField() {
 	std::ifstream fin((std::string) dataField["Levels"]["Level_1"]);
-	fin >> width;
-	fin >> height;
-	std::string ** values = new std::string*[height];
-	for (auto i = 0; i < height; i++) {
-		values[i] = new std::string[width];
+	int w, h;
+	fin >> w;
+	fin >> h;
+	std::string ** values = new std::string*[h];
+	for (auto i = 0; i < h; i++) {
+		values[i] = new std::string[w];
 	}
-	for (auto i = height-1; i >= 0; i--) {
-		for (auto j = 0; j < width; j++) {
+	for (auto i = h-1; i >= 0; i--) {
+		for (auto j = 0; j < w; j++) {
 			fin >> values[i][j];
 		}
 	}
@@ -131,22 +140,44 @@ bool Field::TilesIsNeighbors(TTile * tile1, TTile * tile2) {
 		abs(tile1->GetTilePos().x - tile2->GetTilePos().x) == 0 && abs(tile1->GetTilePos().y - tile2->GetTilePos().y) == 1;
 }
 
-void Field::CreateContent() {
+void Field::CreateObstacle() {
 	std::ifstream fin((std::string) dataField["Content"]["Level_1"]);
-	fin >> width;
-	fin >> height;
+	int w, h;
+	fin >> w;
+	fin >> h;
 	std::string path;
 	std::string value;
-	for (auto i = height - 1; i >= 0; i--) {
-		for (auto j = 0; j < width; j++) {
+	for (auto i = h - 1; i >= 0; i--) {
+		for (auto j = 0; j < w; j++) {
 			fin >> value;
 			if (value != "0" && value != "1") {
 				path = dataField["Content"][value]["Path"];
 				auto sprite = cocos2d::Sprite::create(path);
 				sprite->setScale(dataField["Content"][value]["Scale"]);
 				tiles[i][j]->addChild(sprite, 100);
+				tiles[i][j]->SetObstacle(sprite);
+				tiles[i][j]->empty = false;
 			}	
 		}
 	}
 	fin.close();
+}
+
+void Field::DrawGrid() {
+	std::string path = dataField["Tiles"]["Rect"];
+	for (auto i = 0; i < height; i++) {
+		for (auto j = 0; j < width; j++) {
+			auto rect = cocos2d::Sprite::create(path);
+			rect->setName("Rect");
+			tiles[i][j]->addChild(rect,200);
+		}
+	}
+}
+
+void Field::RemoveGrid() {
+	for (auto i = 0; i < height; i++) {
+		for (auto j = 0; j < width; j++) {
+			tiles[i][j]->removeChildByName("Rect");
+		}
+	}
 }
