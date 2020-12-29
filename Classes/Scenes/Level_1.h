@@ -11,6 +11,7 @@ private:
 	float cooldown = 0;
 	int waveCount = 5;
 	cocos2d::Node * enemies;
+	void BuyTower(Ref * sender);
 public:
     static cocos2d::Scene* createScene();
 	static Level_1 * GetInstance();

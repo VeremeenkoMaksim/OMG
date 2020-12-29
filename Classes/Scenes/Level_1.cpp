@@ -61,9 +61,21 @@ bool Level_1::init()
 
     this->scheduleUpdate();
     
+	auto buyTowerBtn = MenuItemImage::create("UI/buttons/images/buyTowerBtn.png", "UI/buttons/images/buyTowerBtnSelected.png", CC_CALLBACK_1(Level_1::BuyTower, this));
+	buyTowerBtn->setPosition(970, 30);
+	buyTowerBtn->setScale(0.3);
+
+	auto menu = Menu::create(buyTowerBtn, NULL);
+	menu->setPosition(Point::ZERO);
+	this->addChild(menu);
+
+	auto touchListener = EventListenerTouchOneByOne::create();
+
     return true;
 }
-
+void Level_1::BuyTower(Ref * sender) {
+	
+}
 void Level_1::update(float dt) {
 
     if (cooldown <= 0) {
