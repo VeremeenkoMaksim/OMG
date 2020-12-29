@@ -1,7 +1,7 @@
 #pragma once
 #include "cocos2d.h"
-#include "enemies/Goblin.h"
-#include "towers/BasicTower.h"
+
+
 #include <vector>
 
 class Level_1 : public cocos2d::Scene
@@ -9,7 +9,7 @@ class Level_1 : public cocos2d::Scene
 private:
 	static Level_1 * singleton;
 	float cooldown = 0;
-	int waveCount = 3;
+	int waveCount = 5;
 	cocos2d::Node * enemies;
 public:
     static cocos2d::Scene* createScene();

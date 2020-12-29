@@ -1,12 +1,12 @@
 #pragma once
-#include "Goblin.h"
+#include "Ogre.h"
 USING_NS_CC;
 
-Goblin::Goblin() {
-	data = JsonInstance::GetInstance()->GetData("enemies")["Goblin"];
+Ogre::Ogre() {
+	data = JsonInstance::GetInstance()->GetData("enemies")["Ogre"];
 	init();
 }
-bool Goblin::init() {
+bool Ogre::init() {
 	Enemy::init();
 	sprite = cocos2d::Sprite::create(data["Image"]);
 	sprite->setScale(data["Scale"]);
@@ -15,6 +15,9 @@ bool Goblin::init() {
 	speed = data["Stats"]["Speed"];
 	damage = data["Stats"]["Damage"];
 
+	/*animationPath = data["Animation"]["SpriteSheet"];
+	numberOfFrames = data["Animation"]["NumOfFrames"];
+	animationSpeed = data["Animation"]["AnimationSpeed"];*/
 
 	label = cocos2d::Label::create();
 	label->setString(std::to_string(health));
@@ -22,3 +25,4 @@ bool Goblin::init() {
 	this->addChild(label, 10);
 	return true;
 }
+

@@ -3,6 +3,8 @@
 #include "Field.h"
 #include <cmath>
 #include "towers/mainHouse.h"
+#include "cocos2d.h"
+USING_NS_CC;
 
 bool Enemy::init() {
 	nextPosOnTheWay = Field::GetInstance()->GetNodesOfTheWay()[wayNum]->getPosition();
