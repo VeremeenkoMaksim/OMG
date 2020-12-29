@@ -1,7 +1,7 @@
 #pragma once
 #include "cocos2d.h"
-#include "enemies/Goblin.h"
-#include "towers/BasicTower.h"
+
+
 #include <vector>
 #include "../Classes/UI/StoreUI.h"
 
@@ -11,6 +11,7 @@ private:
 	static Level_1 * singleton;
 	float cooldown = 0;
 	int waveCount = 15;
+
 	cocos2d::Node * enemies;
 	void BuyTower(Ref * sender);
 	bool onTouchBegan(cocos2d::Touch * touch, cocos2d::Event * event);

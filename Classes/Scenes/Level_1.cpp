@@ -4,6 +4,10 @@
 #include "towers/MainHouse.h"
 #include "AudioEngine.h"
 #include "LevelFinishScene.h"
+#include "enemies/Goblin.h"
+#include "enemies/Ogre.h"
+#include "towers/BasicTower.h"
+#include "towers/FrostTower.h"
 
 USING_NS_CC;
 
@@ -96,6 +100,8 @@ void Level_1::update(float dt) {
         if (waveCount > 0) {
             Enemy* goblin = new Goblin();
             enemies->addChild(goblin, 10);
+            Enemy* ogre = new Ogre();
+            enemies->addChild(ogre, 10);
             cooldown = 1;
             waveCount--;
         }

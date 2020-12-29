@@ -3,6 +3,8 @@
 #include "Field.h"
 #include <cmath>
 #include "towers/mainHouse.h"
+#include "cocos2d.h"
+USING_NS_CC;
 
 bool Enemy::init() {
 	nextPosOnTheWay = Field::GetInstance()->GetNodesOfTheWay()[wayNum]->getPosition();
@@ -32,7 +34,7 @@ void Enemy::update(float dt) {
 bool Enemy::Move(float dt) {
 	if (wayNum < Field::GetInstance()->GetNodesOfTheWay().size()) {
 		distanceToPosOnTheWay = nextPosOnTheWay - this->getPosition();
-		if (distanceToPosOnTheWay.x * direction.x > 10 || distanceToPosOnTheWay.y * direction.y > 10) {
+		if (distanceToPosOnTheWay.x * direction.x > speed * dt || distanceToPosOnTheWay.y * direction.y > speed * dt) {
 			this->setPosition(this->getPosition().x + speed * dt * direction.x, this->getPosition().y + speed * dt * direction.y);
 		}
 		else {
