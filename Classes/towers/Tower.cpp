@@ -59,14 +59,13 @@ bool Tower::SearchTarget() {
 }
 
 void Tower::Shoot(float damage) {
-	currCooldown = cooldown;
-	auto projectile = new BasicProjectile(targetEnemy, attackSpeed, damage);
-	projectile->setPosition(this->getPosition());
-	this->getParent()->addChild(projectile, 10);
-
-
-	if (targetEnemy->isDead()) 
-		cocos2d::Director::getInstance()->getRunningScene()->getChildByName("Enemies")->removeChild(targetEnemy,false); {
+	if (!targetEnemy->dead) {
+		currCooldown = cooldown;
+		auto projectile = new BasicProjectile(targetEnemy, attackSpeed, damage);
+		projectile->setPosition(this->getPosition());
+		this->getParent()->addChild(projectile, 10);
+	}
+	else {
 		targetEnemy = nullptr;
 	}
 }

@@ -1,11 +1,12 @@
 {
 	"Goblin" : {
-		"Stats" : {"Health" : 30, "Speed" : 200, "Damage" : 25},
+		"Stats" : {"Health" : 30, "Speed" : 100, "Damage" : 10},
 
 		"Image" : "../Resources/enemies/Goblin/Idle/0.png",
 
 		"Scale" : 1,
 
+		"Cost" : 12,
 		"Animation" :{
 			"SpriteSheet": "../Resources/enemies/goblin/walking/goblin_walk.plist",
 			"NumOfFrames": "8",
@@ -14,12 +15,13 @@
 
 	},
 	"Ogre" : {
-		"Stats" : {"Health" : 50, "Speed" : 100, "Damage" : 10},
+		"Stats" : {"Health" : 50, "Speed" : 50, "Damage" : 35},
 
 		"Image" : "../Resources/enemies/ogre/Ogre.png",
 
 		"Scale" : 0.12,
 
+		"Cost" : 25,
 		"Animation" :{
 			"SpriteSheet": "../Resources/enemies/ogre/Ogre.png",
 			"NumOfFrames": "8",

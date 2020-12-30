@@ -23,4 +23,5 @@ public:
 	virtual bool CanShoot();
 	virtual bool SearchTarget();
 	virtual void update(float dt);
+	int cost;
 };

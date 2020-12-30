@@ -1,3 +1,4 @@
+#pragma once
 #ifndef __LEVELFINISH_SCENE_H__
 #define __LEVELFINISH_SCENE_H__
 

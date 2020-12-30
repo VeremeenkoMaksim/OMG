@@ -14,7 +14,7 @@ bool Ogre::init() {
 	health = data["Stats"]["Health"];
 	speed = data["Stats"]["Speed"];
 	damage = data["Stats"]["Damage"];
-
+	cost = data["Cost"];
 	/*animationPath = data["Animation"]["SpriteSheet"];
 	numberOfFrames = data["Animation"]["NumOfFrames"];
 	animationSpeed = data["Animation"]["AnimationSpeed"];*/

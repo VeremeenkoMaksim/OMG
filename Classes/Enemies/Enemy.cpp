@@ -3,7 +3,7 @@
 #include "Field.h"
 #include <cmath>
 #include "towers/mainHouse.h"
-#include "cocos2d.h"
+#include "../Classes/scenes/Level_1.h"
 USING_NS_CC;
 
 bool Enemy::init() {
@@ -19,8 +19,9 @@ bool Enemy::init() {
 void Enemy::ReceiveDamage(float damage) {
 	health -= damage;
 	label->setString(std::to_string(health));
-	if (health <= 0) {
-		
+	if (health <= 0 && !dead) {
+		dead = true;
+		Level_1::GetInstance()->economy->AddGold(cost);
 	}
 }
 
@@ -28,6 +29,7 @@ void Enemy::update(float dt) {
 	if (!Move(dt)) {
 		DamageDeal();
 		cocos2d::Director::getInstance()->getRunningScene()->getChildByName("Enemies")->removeChild(this, false);
+		dead = true;
 	}
 }
 

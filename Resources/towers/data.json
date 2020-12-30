@@ -1,13 +1,15 @@
 {
 	"BasicTower" : {
-		"Stats" : { "AttackSpeed" : 700, "Damage" : 2, "Range" : 200, "Cooldown" : 0.3},
+		"Stats" : { "AttackSpeed" : 700, "Damage" : 2, "Range" : 200, "Cooldown" : 0.1},
 		"Image" : "../Resources/towers/images/BasicTower.png",
-		"Scale" : 0.08
+		"Scale" : 0.08,
+		"Cost" : 50
 	},
 	"FrostTower" : {
 		"Stats" : { "AttackSpeed" : 500, "Damage" : 10, "Range" : 550, "Cooldown" : 5},
 		"Image" : "../Resources/towers/images/FrostTower.png",
-		"Scale" : 0.09
+		"Scale" : 0.09,
+		"Cost" : 75
 	},
 	"MainHouse" : {
 		"Stats" : {"Health" : 1000},

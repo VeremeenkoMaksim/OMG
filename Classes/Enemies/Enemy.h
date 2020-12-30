@@ -8,6 +8,7 @@ protected:
 	float health;
 	float speed;
 	float damage;
+	int cost;
 	cocos2d::Sprite * sprite;
 	int wayNum = 0;
 	bool Move(float dt);
@@ -26,7 +27,5 @@ public:
 	virtual void DamageDeal();
 	virtual void ReceiveDamage(float damage);
 	virtual void update(float dt);
-	bool isDead() {
-		return health <= 0;
-	};
+	bool dead = false;
 };

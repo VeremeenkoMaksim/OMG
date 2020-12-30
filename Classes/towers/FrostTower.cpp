@@ -17,6 +17,7 @@ bool FrostTower::init() {
 	attackSpeed = data["Stats"]["AttackSpeed"];
 	damage = data["Stats"]["Damage"];
 	cooldown = data["Stats"]["Cooldown"];
+	cost = data["Cost"];
 	return true;
 }
 

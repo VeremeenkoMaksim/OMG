@@ -44,7 +44,7 @@ StoreUI * StoreUI::Create() {
 void StoreUI::OpenStore() {
 	if (!opened) {
 		opened = true;
-		auto action = MoveBy::create(0.5, Vec2(-200, 0));
+		auto action = MoveBy::create(0.2, Vec2(-200, 0));
 		this->runAction(action);
 	}
 }
@@ -52,7 +52,7 @@ void StoreUI::OpenStore() {
 void StoreUI::CloseStore() {
 	if (opened) {
 		opened = false;
-		auto action = MoveBy::create(0.5, Vec2(200, 0));
+		auto action = MoveBy::create(0.2, Vec2(200, 0));
 		this->runAction(action);
 	}
 }

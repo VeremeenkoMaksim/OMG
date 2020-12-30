@@ -15,6 +15,10 @@ void Projectile::update(float dt) {
 	if (MoveToTarget(target, dt)) {
 		cocos2d::Director::getInstance()->getRunningScene()->removeChild(this, false);
 		target->ReceiveDamage(damage);
+		if (target->dead) {
+			cocos2d::Director::getInstance()->getRunningScene()->getChildByName("Enemies")->removeChild(target);
+			target = nullptr;
+		}
 	}
 }
 

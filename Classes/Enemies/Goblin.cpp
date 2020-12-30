@@ -14,7 +14,7 @@ bool Goblin::init() {
 	health = data["Stats"]["Health"];
 	speed = data["Stats"]["Speed"];
 	damage = data["Stats"]["Damage"];
-
+	cost = data["Cost"];
 
 	label = cocos2d::Label::create();
 	label->setString(std::to_string(health));

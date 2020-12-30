@@ -1,4 +1,4 @@
-
+#pragma once
 #ifndef __MAINMENU_SCENE_H__
 #define __MAINMENU_SCENE_H__
 
